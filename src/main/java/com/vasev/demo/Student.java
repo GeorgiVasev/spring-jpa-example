@@ -3,7 +3,12 @@ package com.vasev.demo;
 import javax.persistence.*;
 
 @Entity(name = "Student")
-@Table()
+@Table(
+        name = "student",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)
 public class Student {
 
     @Id
@@ -36,13 +41,16 @@ public class Student {
     @Column(
             name = "email",
             nullable = false,
-            columnDefinition = "TEXT",
-            unique = true
+            columnDefinition = "TEXT"
     )
     private String email;
+    @Column(
+            name = "age",
+            nullable = false
+    )
     private int age;
 
-    public Student(){
+    public Student() {
 
     }
 
